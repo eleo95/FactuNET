@@ -12,8 +12,9 @@ namespace EntityLayer.Entities
         public decimal Taxes { get; set; }
         public decimal Total { get; set; }
 
-        public required Client Client { get; set; }
+        public int ClientId { get; set; }
+        public Client? Client { get; set; }
 
-        public ICollection<InvoiceLine> InvoiceLines { get; set; } = new List<InvoiceLine>();
+        public ICollection<InvoiceLine> InvoiceLines { get; } = new List<InvoiceLine>();
     }
 }

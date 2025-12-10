@@ -16,36 +16,49 @@ namespace Presentation.WinForms
 
         private void button1_Click(object sender, EventArgs e)
         {
-            productos().GetAwaiter().GetResult();
+            productos();
         }
 
-        async Task<int> productos()
+        public void productos()
         {
             var productManager = new ProductService();
             var clientManager = new ClientService();
             var invoiceManager = new InvoiceService();
 
-            var client1 = await clientManager.CreateClient("Eddy", "e.leonardo@hola.com", "40223", "Calle Privada #97");
-            var client2 = await clientManager.CreateClient("Jhon", "jjAvion@google.com", "04811", "Ave. Roberto Paztoriza #301");
+            var client1 = clientManager.CreateClient("Eddy", "e.leonardo@hola.com", "40223", "Calle Privada #97");
+            var client2 = clientManager.CreateClient("Jhon", "jjAvion@google.com", "04811", "Ave. Roberto Paztoriza #301");
 
-            var product1 = await productManager.CreateProduct("Lenovo Laptop", 599.99m, 10);
-            var product2 = await productManager.CreateProduct("Google Pixel 8", 430.00m, 5);
+            var product1 = productManager.CreateProduct("Bocina JBL Clip 6", 39.99m, 10);
+            var product2 = productManager.CreateProduct("Calculadora Grafica TI", 150.00m, 5);
 
+            //var li = await clientManager.GetAllClients();
 
-            List<(Product,int)> productsToBuy = [( product1,1),( product2,1)];
+           var lista = productManager.GetAllProducts();
 
-            var newInvoice = await invoiceManager.CreateInvoice(client1,productsToBuy,0.13m);
+            //var upProduct = lista.Last();
+            //upProduct.Name = "Iphone XL";
+            //productManager.UpdateProduct(upProduct);
 
-            var searchresult = await invoiceManager.GetInvoice(newInvoice.Id);
+            // productManager.DeleteProduct(lista.First().Id);
+
+            //var nuevalista =  productManager.GetAllProducts();
+
+            List<(Product, int)> productsToBuy = [(product1, 1), (product2, 2)];
+
+            var newInvoice = invoiceManager.CreateInvoice(client1, productsToBuy, 0.13m);
+
+            var searchresult = invoiceManager.GetInvoice(newInvoice.Id);
 
             newInvoice.InvoiceLines.Remove(newInvoice.InvoiceLines.First());
 
-            await invoiceManager.UpdateInvoice(newInvoice);
+            var nuevalista = productManager.GetAllProducts();
+
+            invoiceManager.UpdateInvoice(newInvoice);
+
+            Console.WriteLine("fin");
 
 
-            var invoicesAfter = await invoiceManager.GetAllInvoices();
-
-            return 0;
+            //var invoicesAfter = await invoiceManager.GetAllInvoices();
 
         }
 

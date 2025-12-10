@@ -11,26 +11,29 @@ namespace BusinessLogicLayer
 {
     public class ProductService
     {
-        private readonly IRepository<Product> _repo = new FakeProductRepository();
+        private readonly IRepository<Product> _repo = new SqlServerProductRepository();
 
 
-        public async Task<IEnumerable<Product>> GetAllProducts()
-            => await _repo.GetAll();
+        public  IEnumerable<Product> GetAllProducts()
+        {
+            var results =  _repo.GetAll();
+            return results;
+        }
 
-        public async Task<Product?> GetProduct(int id)
-            => await _repo.GetById(id);
+        public  Product? GetProduct(int id)
+            =>  _repo.GetById(id);
 
-        public async Task<Product> CreateProduct(string name, decimal price, int stock)
+        public  Product CreateProduct(string name, decimal price, int stock)
         {
             var product = new Product { Name = name, Price = price, Stock = stock };
-            await _repo.Add(product);
+             _repo.Add(product);
             return product;
         }
 
-        public async Task UpdateProduct(Product product)
-            => await _repo.Update(product);
+        public void UpdateProduct(Product product)
+            =>  _repo.Update(product);
 
-        public async Task DeleteProduct(int id)
-            => await _repo.Delete(id);
+        public void DeleteProduct(int id)
+            =>  _repo.Delete(id);
     }
 }

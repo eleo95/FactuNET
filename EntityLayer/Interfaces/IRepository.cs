@@ -9,10 +9,10 @@ namespace EntityLayer.Interfaces
 {
     public interface IRepository<T> where T : class
     {
-        Task<T?> GetById(int id);
-        Task<IEnumerable<T>> GetAll();
-        Task Add(T obj);
-        Task Update(T obj);
-        Task Delete(int id);
+        T? GetById(int id);
+        IEnumerable<T> GetAll();
+        T? Add(T obj);
+        void Update(T obj);
+        void Delete(int id);
     }
 }

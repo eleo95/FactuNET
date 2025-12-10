@@ -7,13 +7,13 @@ namespace BusinessLogicLayer
 {
     public class InvoiceService
     {
-        private readonly IInvoiceRepository _repo = new FakeInvoiceRepository();
+        private readonly IRepository<Invoice> _repo = new SqlServerInvoiceRepository();
             
-        public async Task<Invoice> CreateInvoice(Client client, List<(Product product, int qty)> lines, decimal tax)
+        public Invoice CreateInvoice(Client client, List<(Product product, int qty)> lines, decimal tax)
         {
             var invoice = new Invoice
             {
-                Client = client
+                ClientId = client.Id
             };
 
             foreach (var (product, qty) in lines)
@@ -22,8 +22,8 @@ namespace BusinessLogicLayer
                 {
                     Quantity = qty,
                     SalePrice = product.Price,
-                    Product = product,
-                    Invoice = invoice
+                    ProductId = product.Id,
+                    InvoiceId = invoice.Id,
                 };
 
                 invoice.InvoiceLines.Add(line);
@@ -33,21 +33,21 @@ namespace BusinessLogicLayer
             invoice.Taxes = invoice.Subtotal * tax;
             invoice.Total = invoice.Subtotal + invoice.Taxes;
 
-            await _repo.Add(invoice);
+            _repo.Add(invoice);
             return invoice;
 
         }
 
-        public async Task<IEnumerable<Invoice>> GetAllInvoices()
-            => await _repo.GetAll();
+        public IEnumerable<Invoice> GetAllInvoices()
+            => _repo.GetAll();
 
-        public async Task<Invoice?> GetInvoice(int id)
-            => await _repo.GetById(id);
+        public Invoice? GetInvoice(int id)
+            => _repo.GetById(id);
 
-        public async Task UpdateInvoice(Invoice invoice)
-            => await _repo.Update(invoice);
+        public void UpdateInvoice(Invoice invoice)
+            => _repo.Update(invoice);
 
-        public async Task DeleteInvoice(int id)
-            => await _repo.Delete(id);
+        public void DeleteInvoice(int id)
+            => _repo.Delete(id);
     }
 }

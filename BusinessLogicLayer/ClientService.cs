@@ -11,26 +11,26 @@ namespace BusinessLogicLayer
 {
     public class ClientService
     {
-        private readonly IClientRepository _repo = new FakeClientRepository();
+        private readonly IRepository<Client> _repo = new SqlServerClientRepository();
 
 
-        public async Task<IEnumerable<Client>> GetAllClients()
-            => await _repo.GetAll();
+        public IEnumerable<Client> GetAllClients()
+            => _repo.GetAll();
 
-        public async Task<Client?> GetClient(int id)
-            => await _repo.GetById(id);
+        public Client? GetClient(int id)
+            => _repo.GetById(id);
 
-        public async Task<Client> CreateClient(string name, string email, string rnc, string address)
+        public Client CreateClient(string name, string email, string rnc, string address)
         {
             var client = new Client { Name = name, Email = email, Rnc = rnc, Address = address};
-            await _repo.Add(client);
+            _repo.Add(client);
             return client;
         }
 
-        public async Task UpdateClient(Client client)
-            => await _repo.Update(client);
+        public void UpdateClient(Client client)
+            => _repo.Update(client);
 
-        public async Task DeleteClient(int id)
-            => await _repo.Delete(id);
+        public void DeleteClient(int id)
+            => _repo.Delete(id);
     }
 }
