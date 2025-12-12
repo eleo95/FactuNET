@@ -28,44 +28,42 @@
         /// </summary>
         private void InitializeComponent()
         {
-            panelClients = new Panel();
             btnNewClient = new Button();
             dataGridClients = new DataGridView();
-            button1 = new Button();
-            menuStrip1 = new MenuStrip();
-            HomeMenuItem = new ToolStripMenuItem();
-            InvoicesMenuItem = new ToolStripMenuItem();
-            ClientsMenuItem = new ToolStripMenuItem();
-            ProductsMenuItem = new ToolStripMenuItem();
-            panelHome = new Panel();
+            btnCreateInvoice = new Button();
+            flowLayoutPanel3 = new FlowLayoutPanel();
+            labelTotal = new Label();
+            flowLayoutPanel2 = new FlowLayoutPanel();
+            labelTax = new Label();
+            flowLayoutPanel1 = new FlowLayoutPanel();
+            labelSubtotal = new Label();
             dataGridInvoiceLine = new DataGridView();
             comboBoxClient = new ComboBox();
-            panelInvoice = new Panel();
-            panelProducts = new Panel();
             dataGridProducts = new DataGridView();
             btnNewProduct = new Button();
-            panelClients.SuspendLayout();
+            tabContainer = new TabControl();
+            tabHome = new TabPage();
+            tabInvoices = new TabPage();
+            dataGridInvoices = new DataGridView();
+            tabClients = new TabPage();
+            tabProducts = new TabPage();
             ((System.ComponentModel.ISupportInitialize)dataGridClients).BeginInit();
-            menuStrip1.SuspendLayout();
-            panelHome.SuspendLayout();
+            flowLayoutPanel3.SuspendLayout();
+            flowLayoutPanel2.SuspendLayout();
+            flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridInvoiceLine).BeginInit();
-            panelProducts.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridProducts).BeginInit();
+            tabContainer.SuspendLayout();
+            tabHome.SuspendLayout();
+            tabInvoices.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridInvoices).BeginInit();
+            tabClients.SuspendLayout();
+            tabProducts.SuspendLayout();
             SuspendLayout();
-            // 
-            // panelClients
-            // 
-            panelClients.Controls.Add(btnNewClient);
-            panelClients.Controls.Add(dataGridClients);
-            panelClients.Location = new Point(6, 27);
-            panelClients.Name = "panelClients";
-            panelClients.Size = new Size(585, 536);
-            panelClients.TabIndex = 0;
-            panelClients.Visible = false;
             // 
             // btnNewClient
             // 
-            btnNewClient.Location = new Point(485, 50);
+            btnNewClient.Location = new Point(472, 22);
             btnNewClient.Name = "btnNewClient";
             btnNewClient.Size = new Size(75, 23);
             btnNewClient.TabIndex = 1;
@@ -77,7 +75,7 @@
             // 
             dataGridClients.AllowUserToAddRows = false;
             dataGridClients.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridClients.Location = new Point(17, 79);
+            dataGridClients.Location = new Point(4, 51);
             dataGridClients.Name = "dataGridClients";
             dataGridClients.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridClients.Size = new Size(543, 436);
@@ -87,106 +85,105 @@
             dataGridClients.UserAddedRow += dataGridClients_UserAddedRow;
             dataGridClients.UserDeletingRow += dataGridClients_UserDeletingRow;
             // 
-            // button1
+            // btnCreateInvoice
             // 
-            button1.Location = new Point(478, 25);
-            button1.Margin = new Padding(2);
-            button1.Name = "button1";
-            button1.Size = new Size(76, 20);
-            button1.TabIndex = 0;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            btnCreateInvoice.Location = new Point(463, 23);
+            btnCreateInvoice.Margin = new Padding(2);
+            btnCreateInvoice.Name = "btnCreateInvoice";
+            btnCreateInvoice.Size = new Size(76, 20);
+            btnCreateInvoice.TabIndex = 0;
+            btnCreateInvoice.Text = "Facturar";
+            btnCreateInvoice.UseVisualStyleBackColor = true;
+            btnCreateInvoice.Click += button1_Click;
             // 
-            // menuStrip1
+            // flowLayoutPanel3
             // 
-            menuStrip1.ImageScalingSize = new Size(28, 28);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { HomeMenuItem, InvoicesMenuItem, ClientsMenuItem, ProductsMenuItem });
-            menuStrip1.Location = new Point(0, 0);
-            menuStrip1.Name = "menuStrip1";
-            menuStrip1.Padding = new Padding(4, 1, 0, 1);
-            menuStrip1.Size = new Size(601, 24);
-            menuStrip1.TabIndex = 1;
-            menuStrip1.Text = "menuStrip1";
+            flowLayoutPanel3.Anchor = AnchorStyles.Right;
+            flowLayoutPanel3.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            flowLayoutPanel3.Controls.Add(labelTotal);
+            flowLayoutPanel3.FlowDirection = FlowDirection.RightToLeft;
+            flowLayoutPanel3.Location = new Point(194, 328);
+            flowLayoutPanel3.Name = "flowLayoutPanel3";
+            flowLayoutPanel3.Size = new Size(345, 27);
+            flowLayoutPanel3.TabIndex = 5;
             // 
-            // HomeMenuItem
+            // labelTotal
             // 
-            HomeMenuItem.Name = "HomeMenuItem";
-            HomeMenuItem.Size = new Size(48, 22);
-            HomeMenuItem.Text = "Inicio";
-            HomeMenuItem.Click += HomeMenuItem_Click;
+            labelTotal.AutoSize = true;
+            labelTotal.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            labelTotal.Location = new Point(198, 0);
+            labelTotal.Name = "labelTotal";
+            labelTotal.Size = new Size(144, 21);
+            labelTotal.TabIndex = 0;
+            labelTotal.Text = "Total a pagar: $0.00";
             // 
-            // InvoicesMenuItem
+            // flowLayoutPanel2
             // 
-            InvoicesMenuItem.Name = "InvoicesMenuItem";
-            InvoicesMenuItem.Size = new Size(63, 22);
-            InvoicesMenuItem.Text = "Facturas";
-            InvoicesMenuItem.Click += InvoicesMenuItem_Click;
+            flowLayoutPanel2.Anchor = AnchorStyles.Right;
+            flowLayoutPanel2.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            flowLayoutPanel2.Controls.Add(labelTax);
+            flowLayoutPanel2.FlowDirection = FlowDirection.RightToLeft;
+            flowLayoutPanel2.Location = new Point(194, 295);
+            flowLayoutPanel2.Name = "flowLayoutPanel2";
+            flowLayoutPanel2.Size = new Size(345, 27);
+            flowLayoutPanel2.TabIndex = 4;
             // 
-            // ClientsMenuItem
+            // labelTax
             // 
-            ClientsMenuItem.Name = "ClientsMenuItem";
-            ClientsMenuItem.Size = new Size(61, 22);
-            ClientsMenuItem.Text = "Clientes";
-            ClientsMenuItem.Click += ClientsMenuItem_Click;
+            labelTax.AutoSize = true;
+            labelTax.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            labelTax.Location = new Point(252, 0);
+            labelTax.Name = "labelTax";
+            labelTax.Size = new Size(90, 21);
+            labelTax.TabIndex = 0;
+            labelTax.Text = "ITBIS: $0.00";
             // 
-            // ProductsMenuItem
+            // flowLayoutPanel1
             // 
-            ProductsMenuItem.Name = "ProductsMenuItem";
-            ProductsMenuItem.Size = new Size(73, 22);
-            ProductsMenuItem.Text = "Productos";
-            ProductsMenuItem.Click += ProductsMenuItem_Click;
+            flowLayoutPanel1.Anchor = AnchorStyles.Right;
+            flowLayoutPanel1.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            flowLayoutPanel1.Controls.Add(labelSubtotal);
+            flowLayoutPanel1.FlowDirection = FlowDirection.RightToLeft;
+            flowLayoutPanel1.Location = new Point(194, 262);
+            flowLayoutPanel1.Name = "flowLayoutPanel1";
+            flowLayoutPanel1.Size = new Size(345, 27);
+            flowLayoutPanel1.TabIndex = 3;
             // 
-            // panelHome
+            // labelSubtotal
             // 
-            panelHome.Controls.Add(dataGridInvoiceLine);
-            panelHome.Controls.Add(comboBoxClient);
-            panelHome.Controls.Add(button1);
-            panelHome.Location = new Point(12, 27);
-            panelHome.Name = "panelHome";
-            panelHome.Size = new Size(572, 536);
-            panelHome.TabIndex = 2;
+            labelSubtotal.AutoSize = true;
+            labelSubtotal.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            labelSubtotal.Location = new Point(228, 0);
+            labelSubtotal.Name = "labelSubtotal";
+            labelSubtotal.Size = new Size(114, 21);
+            labelSubtotal.TabIndex = 0;
+            labelSubtotal.Text = "Subtotal: $0.00";
             // 
             // dataGridInvoiceLine
             // 
             dataGridInvoiceLine.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridInvoiceLine.Location = new Point(21, 99);
+            dataGridInvoiceLine.Location = new Point(6, 97);
             dataGridInvoiceLine.Name = "dataGridInvoiceLine";
             dataGridInvoiceLine.Size = new Size(533, 150);
             dataGridInvoiceLine.TabIndex = 2;
+            dataGridInvoiceLine.CellEndEdit += dataGridInvoiceLine_CellEndEdit;
+            dataGridInvoiceLine.CellValueChanged += dataGridInvoiceLine_CellValueChanged;
+            dataGridInvoiceLine.CurrentCellDirtyStateChanged += dataGridInvoiceLine_CurrentCellDirtyStateChanged;
             dataGridInvoiceLine.DataError += dataGridInvoiceLine_DataError;
             // 
             // comboBoxClient
             // 
             comboBoxClient.FormattingEnabled = true;
-            comboBoxClient.Location = new Point(21, 28);
+            comboBoxClient.Location = new Point(6, 26);
             comboBoxClient.Name = "comboBoxClient";
             comboBoxClient.Size = new Size(121, 23);
             comboBoxClient.TabIndex = 1;
-            // 
-            // panelInvoice
-            // 
-            panelInvoice.Location = new Point(6, 27);
-            panelInvoice.Name = "panelInvoice";
-            panelInvoice.Size = new Size(585, 536);
-            panelInvoice.TabIndex = 1;
-            panelInvoice.Visible = false;
-            // 
-            // panelProducts
-            // 
-            panelProducts.Controls.Add(dataGridProducts);
-            panelProducts.Controls.Add(btnNewProduct);
-            panelProducts.Location = new Point(12, 27);
-            panelProducts.Name = "panelProducts";
-            panelProducts.Size = new Size(572, 536);
-            panelProducts.TabIndex = 0;
-            panelProducts.Visible = false;
             // 
             // dataGridProducts
             // 
             dataGridProducts.AllowUserToAddRows = false;
             dataGridProducts.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridProducts.Location = new Point(13, 79);
+            dataGridProducts.Location = new Point(3, 54);
             dataGridProducts.Name = "dataGridProducts";
             dataGridProducts.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridProducts.Size = new Size(543, 436);
@@ -197,7 +194,7 @@
             // 
             // btnNewProduct
             // 
-            btnNewProduct.Location = new Point(453, 35);
+            btnNewProduct.Location = new Point(443, 10);
             btnNewProduct.Name = "btnNewProduct";
             btnNewProduct.Size = new Size(75, 23);
             btnNewProduct.TabIndex = 1;
@@ -205,50 +202,128 @@
             btnNewProduct.UseVisualStyleBackColor = true;
             btnNewProduct.Click += btnNewProduct_Click;
             // 
+            // tabContainer
+            // 
+            tabContainer.Controls.Add(tabHome);
+            tabContainer.Controls.Add(tabInvoices);
+            tabContainer.Controls.Add(tabClients);
+            tabContainer.Controls.Add(tabProducts);
+            tabContainer.Location = new Point(0, 0);
+            tabContainer.Name = "tabContainer";
+            tabContainer.SelectedIndex = 0;
+            tabContainer.Size = new Size(561, 521);
+            tabContainer.TabIndex = 3;
+            tabContainer.SelectedIndexChanged += tabContainer_SelectedIndexChanged;
+            // 
+            // tabHome
+            // 
+            tabHome.Controls.Add(flowLayoutPanel3);
+            tabHome.Controls.Add(comboBoxClient);
+            tabHome.Controls.Add(flowLayoutPanel2);
+            tabHome.Controls.Add(btnCreateInvoice);
+            tabHome.Controls.Add(flowLayoutPanel1);
+            tabHome.Controls.Add(dataGridInvoiceLine);
+            tabHome.Location = new Point(4, 24);
+            tabHome.Name = "tabHome";
+            tabHome.Padding = new Padding(3);
+            tabHome.Size = new Size(553, 493);
+            tabHome.TabIndex = 0;
+            tabHome.Text = "Inicio";
+            tabHome.UseVisualStyleBackColor = true;
+            // 
+            // tabInvoices
+            // 
+            tabInvoices.Controls.Add(dataGridInvoices);
+            tabInvoices.Location = new Point(4, 24);
+            tabInvoices.Name = "tabInvoices";
+            tabInvoices.Padding = new Padding(3);
+            tabInvoices.Size = new Size(553, 493);
+            tabInvoices.TabIndex = 1;
+            tabInvoices.Text = "Facturas";
+            tabInvoices.UseVisualStyleBackColor = true;
+            // 
+            // dataGridInvoices
+            // 
+            dataGridInvoices.AllowUserToAddRows = false;
+            dataGridInvoices.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridInvoices.Location = new Point(7, 37);
+            dataGridInvoices.Name = "dataGridInvoices";
+            dataGridInvoices.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridInvoices.Size = new Size(543, 436);
+            dataGridInvoices.TabIndex = 3;
+            // 
+            // tabClients
+            // 
+            tabClients.Controls.Add(btnNewClient);
+            tabClients.Controls.Add(dataGridClients);
+            tabClients.Location = new Point(4, 24);
+            tabClients.Name = "tabClients";
+            tabClients.Padding = new Padding(3);
+            tabClients.Size = new Size(553, 493);
+            tabClients.TabIndex = 2;
+            tabClients.Text = "Clientes";
+            tabClients.UseVisualStyleBackColor = true;
+            // 
+            // tabProducts
+            // 
+            tabProducts.Controls.Add(dataGridProducts);
+            tabProducts.Controls.Add(btnNewProduct);
+            tabProducts.Location = new Point(4, 24);
+            tabProducts.Name = "tabProducts";
+            tabProducts.Padding = new Padding(3);
+            tabProducts.Size = new Size(553, 493);
+            tabProducts.TabIndex = 3;
+            tabProducts.Text = "Productos";
+            tabProducts.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(601, 592);
-            Controls.Add(panelHome);
-            Controls.Add(panelClients);
-            Controls.Add(panelProducts);
-            Controls.Add(panelInvoice);
-            Controls.Add(menuStrip1);
-            MainMenuStrip = menuStrip1;
+            ClientSize = new Size(560, 519);
+            Controls.Add(tabContainer);
             Margin = new Padding(2);
             Name = "Form1";
             Text = "FactuNET";
             Load += Form1_Load;
-            panelClients.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridClients).EndInit();
-            menuStrip1.ResumeLayout(false);
-            menuStrip1.PerformLayout();
-            panelHome.ResumeLayout(false);
+            flowLayoutPanel3.ResumeLayout(false);
+            flowLayoutPanel3.PerformLayout();
+            flowLayoutPanel2.ResumeLayout(false);
+            flowLayoutPanel2.PerformLayout();
+            flowLayoutPanel1.ResumeLayout(false);
+            flowLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridInvoiceLine).EndInit();
-            panelProducts.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridProducts).EndInit();
+            tabContainer.ResumeLayout(false);
+            tabHome.ResumeLayout(false);
+            tabInvoices.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dataGridInvoices).EndInit();
+            tabClients.ResumeLayout(false);
+            tabProducts.ResumeLayout(false);
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
 
-        private Button button1;
-        private MenuStrip menuStrip1;
-        private ToolStripMenuItem ClientsMenuItem;
-        private ToolStripMenuItem ProductsMenuItem;
-        private ToolStripMenuItem HomeMenuItem;
-        private ToolStripMenuItem InvoicesMenuItem;
-        private Panel panelHome;
-        private Panel panelInvoice;
-        private Panel panelClients;
-        private Panel panelProducts;
+        private Button btnCreateInvoice;
         private Button btnNewClient;
         private Button btnNewProduct;
         private DataGridView dataGridClients;
         private DataGridView dataGridProducts;
         private ComboBox comboBoxClient;
         private DataGridView dataGridInvoiceLine;
+        private FlowLayoutPanel flowLayoutPanel1;
+        private Label labelSubtotal;
+        private FlowLayoutPanel flowLayoutPanel3;
+        private Label labelTotal;
+        private FlowLayoutPanel flowLayoutPanel2;
+        private Label labelTax;
+        private TabControl tabContainer;
+        private TabPage tabHome;
+        private TabPage tabInvoices;
+        private TabPage tabClients;
+        private TabPage tabProducts;
+        private DataGridView dataGridInvoices;
     }
 }

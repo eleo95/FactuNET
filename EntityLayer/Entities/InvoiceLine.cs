@@ -9,7 +9,7 @@ namespace EntityLayer.Entities
     public class InvoiceLine : BaseEntity
     {
 
-        public int Quantity { get; set; }
+        public int Quantity { get; set; } = 1;
         public decimal SalePrice { get; set; }
         public decimal LineTotal => Quantity * SalePrice;
 

@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using EntityLayer.Entities;
-
-namespace EntityLayer.Interfaces
+﻿namespace EntityLayer.Interfaces
 {
     public interface IRepository<T> where T : class
     {
